@@ -43,7 +43,8 @@ public class LoginController {
     @RequestMapping("/login")
     ResultEntity login(@RequestParam("code") String code) {
         System.out.println(code);
-
+        String appid;
+        String secret;
 
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code";
         Map<String, String> paramMap = new HashMap<>();

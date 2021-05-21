@@ -11,6 +11,8 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,9 +53,16 @@ public class AutoImport {
 
             //获取当前类的所在目录的路径
             //String path = ExecuteScript.class.getResource("").getPath();
-            String path = "E:\\源码\\微信小程序开发\\java后台\\src\\main\\java\\com\\example\\jingtao\\autoimport\\";
+            //String path = "E:\\源码\\微信小程序开发\\java后台\\src\\main\\java\\com\\example\\jingtao\\autoimport\\";
+            String basePath = null;
+            try {
+                basePath = URLDecoder.decode(Thread.currentThread().getContextClassLoader().getResource("").getPath(), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            //String path = Class.class.getClass().getResource("/").getPath();
             // FileReader的参数为所要执行的js文件的路径
-            engine.eval(new FileReader(path + "des.js"));
+            engine.eval(new FileReader(basePath + "des.js"));
             if (engine instanceof Invocable) {
                 Invocable invocable = (Invocable) engine;
                 //从脚本引擎中返回一个给定接口的实现

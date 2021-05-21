@@ -1,11 +1,10 @@
 package com.example.jingtao.entity;
 
-import com.example.jingtao.autoimport.wasd;
+import com.example.jingtao.autoimport.ParseWeeks;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Map;
 
 @Data
@@ -24,7 +23,7 @@ public class Course {
         this.openid = openid;
         this.courseName = map.get("courseName");
         this.classroom = map.get("classroom");
-        this.weeks = wasd.parseWeeks(map.get("weeks"));
+        this.weeks = ParseWeeks.parseWeeks(map.get("weeks"));
         this.day = Integer.parseInt(map.get("day"));
         this.jieshu = Integer.parseInt(map.get("jieshu"));
         this.teacher = map.get("teacher");

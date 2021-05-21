@@ -1,6 +1,7 @@
 package com.example.jingtao;
 
 import com.example.jingtao.autoimport.AutoImport;
+import com.example.jingtao.autoimport.JS;
 import com.example.jingtao.entity.Note;
 import com.example.jingtao.entity.PostPlus;
 import com.example.jingtao.mapper.NoteMapper;
@@ -10,7 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.sql.DataSource;
+import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,8 +92,43 @@ class JingtaoApplicationTests {
 
     @Autowired
     private CourseService courseService;
+
     @Test
     public void qqqq() {
-        courseService.importCourseByOpenidAndStudentId("oNTNQ5EVBLG1qFO2QfNGEm6hcdrk","201900301184","911ABCabc+");
+        //courseService.importCourseByOpenidAndStudentId("oNTNQ5EVBLG1qFO2QfNGEm6hcdrk","201900301184","911ABCabc+");
+        //System.out.println(Thread.currentThread().getContextClassLoader().getResource("").getPath());
+//        System.out.println(Class.class.getClass().getResource("/").getPath());
+        ScriptEngineManager manager = new ScriptEngineManager();
+        //获取一个指定的名称的脚本引擎
+        ScriptEngine engine = manager.getEngineByName("js");
+        try {
+
+            //获取当前类的所在目录的路径
+            //String path = ExecuteScript.class.getResource("").getPath();
+            //String path = "E:\\源码\\微信小程序开发\\java后台\\src\\main\\java\\com\\example\\jingtao\\autoimport\\";
+            //String path = Class.class.getClass().getResource("/").getPath();
+            // 获取classpath的绝对值路径，有中文需要解码路径，不然输出的是乱码的
+            String basePath = null;
+
+            try {
+                basePath = URLDecoder.decode(Thread.currentThread().getContextClassLoader().getResource("").getPath(), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            // FileReader的参数为所要执行的js文件的路径
+            engine.eval(new FileReader(basePath + "des.js"));
+            if (engine instanceof Invocable) {
+                Invocable invocable = (Invocable) engine;
+                //从脚本引擎中返回一个给定接口的实现
+                JS js = invocable.getInterface(JS.class);
+                //执行指定的js方法
+                //System.out.println(js.strEnc("20192216128620011011ke" + lt, "1", "2", "3"));//
+                String rsa = js.strEnc("201900301184911ABCabc+", "1", "2", "3");
+                System.out.println(rsa);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
