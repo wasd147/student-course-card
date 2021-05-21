@@ -1,0 +1,12 @@
+wechat:
+  appid:"wx1309577b6931b6cf"
+  secret:"1f6b01eaf73c72e2da1d6f578f6f8b01"
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/wxapp?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+server:
+  port: 8088

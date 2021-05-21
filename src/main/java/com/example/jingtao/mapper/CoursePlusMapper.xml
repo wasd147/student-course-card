@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.jingtao.mapper.CoursePlusMapper">
+    <insert id="addCourse" parameterType="com.example.jingtao.entity.CoursePlus">
+        insert into course
+            (openid, course_name, classroom, weeks, day, jieshu, teacher)
+        values (#{openid}, #{courseName}, #{classroom}, #{weeks}, #{day}, #{jieshu}, #{teacher})
+    </insert>
+    <delete id="deleteACourse" parameterType="com.example.jingtao.entity.CoursePlus">
+        delete
+        from course
+        where openid = #{openid}
+                  and course_name = #{courseName}
+                  and classroom = #{classroom}
+                  and weeks = #{weeks}
+                  and day = #{day}
+          and jieshu = #{jieshu}
+          and teacher = #{teacher}
+
+    </delete>
+    <delete id="deleteAllCourseByOpenid">
+        delete
+        from course
+        where openid = #{openid}
+    </delete>
+    <select id="selectByOpenidAndWeeks" resultType="com.example.jingtao.entity.CoursePlus">
+        select *
+        from course
+        where openid = #{openid}
+          and weeks like "%"#{week}"%"
+
+    </select>
+</mapper>
