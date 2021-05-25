@@ -23,7 +23,9 @@
         from course
         where openid = #{openid}
     </delete>
-    <select id="selectByOpenidAndWeeks" resultType="com.example.jingtao.entity.CoursePlus">
+    <select id="selectByOpenidAndWeeks" resultType="com.example.jingtao.entity.CoursePlus"
+    >
+
         select *
         from course
         where openid = #{openid}

@@ -48,8 +48,10 @@ public class LoginController {
 
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code";
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("appid", "wx1309577b6931b6cf");
-        paramMap.put("secret", "1f6b01eaf73c72e2da1d6f578f6f8b01");
+//        paramMap.put("appid", "wx1309577b6931b6cf");
+//        paramMap.put("secret", "1f6b01eaf73c72e2da1d6f578f6f8b01");
+        paramMap.put("appid", "wx714c0eda4ea7f769");
+        paramMap.put("secret", "dc04ae392f9b69a012a2897376b93cc4");
         paramMap.put("code", code);
 
         String result = this.restTemplate.getForObject(url, String.class, paramMap);
@@ -58,6 +60,8 @@ public class LoginController {
 
         String openid = map.get("openid");
         String session_key = map.get("session_key");
+        System.out.println(openid);
+        System.out.println(session_key);
         UUID uuid = UUID.randomUUID();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String time = LocalDateTime.now().format(formatter);

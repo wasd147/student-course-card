@@ -2,8 +2,11 @@ package com.example.jingtao;
 
 import com.example.jingtao.autoimport.AutoImport;
 import com.example.jingtao.autoimport.JS;
+import com.example.jingtao.entity.Course;
+import com.example.jingtao.entity.CoursePlus;
 import com.example.jingtao.entity.Note;
 import com.example.jingtao.entity.PostPlus;
+import com.example.jingtao.mapper.CoursePlusMapper;
 import com.example.jingtao.mapper.NoteMapper;
 import com.example.jingtao.service.CourseService;
 import com.example.jingtao.service.PostService;
@@ -130,5 +133,17 @@ class JingtaoApplicationTests {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Autowired
+    //private CourseService courseService;
+    private CoursePlusMapper coursePlusMapper;
+    @Test
+    public void wwasd() {
+        List<CoursePlus> list = coursePlusMapper.selectByOpenidAndWeeks("oUw7p5GBwO8DmwXj3YfeEl6uuq4s", "1");
+        System.out.println(list);
+        List<Course> courses = courseService.selectByOpenidAndWeeks("oUw7p5GBwO8DmwXj3YfeEl6uuq4s", "1");
+        System.out.println(courses);
     }
 }

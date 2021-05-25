@@ -57,6 +57,9 @@ public class AutoImport {
             String basePath = null;
             try {
                 basePath = URLDecoder.decode(Thread.currentThread().getContextClassLoader().getResource("").getPath(), "UTF-8");
+                System.out.println(basePath);
+                basePath += "com\\example\\jingtao\\autoimport\\";
+                System.out.println(basePath);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -99,7 +102,7 @@ public class AutoImport {
         Document doc = null;
         try {
             Connection.Response response_login = connect_login.followRedirects(false).execute();
-            doc = response_login.parse();
+            System.out.println(response_login.header("Location"));
             Connection connect2 = Jsoup.connect(response_login.header("Location")).followRedirects(false);
             connect2.header("Cookie", "JSESSIONID=" + bkjsw_cookies.get("JSESSIONID"));
             Connection.Response response2 = connect2.execute();

@@ -36,7 +36,10 @@ public class CourseController {
      */
     @RequestMapping("/importCourse")
     public ResultEntity importCourse(@RequestParam("openid") String openid, @RequestParam("username") String username, @RequestParam("password") String password) {
-        courseService.importCourseByOpenidAndStudentId(openid, username, password);
+        System.out.println(username + "  " + password);
+
+        String replace = password.replace(' ', '+');
+        courseService.importCourseByOpenidAndStudentId(openid, username, replace);
         return ResultEntity.success("导入课表成功", null);
     }
 
@@ -71,6 +74,7 @@ public class CourseController {
     @RequestMapping("/addCourse")
     ResultEntity addCourse(@RequestParam("course") String course_) {
         Course course = JSON.parseObject(course_, Course.class);
+        System.out.println(course);
         int[] weeks = course.getWeeks();
         for (int i = 0; i < weeks.length; i++) {
             Course res_course = courseService.selectByOpenidAndTime(course.getOpenid(), String.valueOf(weeks[i]), course.getDay(), course.getJieshu());
@@ -121,12 +125,7 @@ public class CourseController {
         Course course = JSON.parseObject(course_, Course.class);
         System.out.println(course);
         int i = courseService.deleteACourse(course);
-        if (i == 1) {
-            return ResultEntity.success("ok", i);
-
-        } else {
-            return ResultEntity.error("error", (-1));
-        }
+        return ResultEntity.success("ok", null);
     }
 
     /**
@@ -147,12 +146,7 @@ public class CourseController {
     @RequestMapping("/deleteAllCourseByOpenid")
     ResultEntity deleteAllCourseByOpenid(@RequestParam("openid") String openid) {
         int i = courseService.deleteAllCourseByOpenid(openid);
-        if (i == 1) {
-            return ResultEntity.success("ok", i);
-
-        } else {
-            return ResultEntity.error("error", (-1));
-        }
+        return ResultEntity.success("ok", null);
 
     }
 
