@@ -122,8 +122,8 @@ public class UserController {
      * {"msg":"b3B7","code":461,"data":{}}
      */
     @RequestMapping("/selectByBanji")
-    ResultEntity selectByBanji(@RequestParam("school") String school, @RequestParam("college") String college, @RequestParam("major") String major, @RequestParam("grade") int grade, @RequestParam("banji") String banji) {
-        List<User> users = userService.selectByBanji(school, college, major, grade, banji);
+    ResultEntity selectByBanji(@RequestParam("school") String school, @RequestParam("college") String college, @RequestParam("major") String major, @RequestParam("grade") String grade, @RequestParam("banji") String banji) {
+        List<User> users = userService.selectByBanji(school, college, major, Integer.parseInt(grade), banji);
         if (users.isEmpty()) {
             return ResultEntity.success("结果为空", users);
         } else {
@@ -151,8 +151,8 @@ public class UserController {
      * {"msg":"RY","code":7171,"data":{}}
      */
     @RequestMapping("/selectByGrade")
-    ResultEntity selectByGrade(@RequestParam("school") String school, @RequestParam("college") String college, @RequestParam("major") String major, @RequestParam("grade") int grade) {
-        List<User> users = userService.selectByGrade(school, college, major, grade);
+    ResultEntity selectByGrade(@RequestParam("school") String school, @RequestParam("college") String college, @RequestParam("major") String major, @RequestParam("grade") String grade) {
+        List<User> users = userService.selectByGrade(school, college, major, Integer.parseInt(grade));
         if (users.isEmpty()) {
             return ResultEntity.success("结果为空", users);
         } else {
