@@ -2,12 +2,16 @@ package com.example.jingtao.contrller;
 
 import com.example.jingtao.entity.ResultEntity;
 import com.example.jingtao.entity.User;
+import com.example.jingtao.entity.UserInf;
+import com.example.jingtao.entity.UserPlus;
+import com.example.jingtao.service.UserInfService;
 import com.example.jingtao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,7 +19,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserInfService userInfService;
 
     /**
      * @api {POST} /user/addAUser addAUser
@@ -79,10 +84,10 @@ public class UserController {
 
     /**
      * @api {POST} /user/getUser getUser
-     * @apiVersion 1.0.0
+     * @apiVersion 6.0.0
      * @apiGroup UserController
      * @apiName getUser
-     * @apiDescription 根据openid获取用户信息
+     * @apiDescription 根据openid获取用户信息 返回结果封装了一层 对象携带头像和昵称
      * @apiParam (请求参数) {String} openid 你存在微信里的openid
      * @apiParamExample 请求参数示例
      * openid=0Szk
@@ -95,31 +100,32 @@ public class UserController {
     @RequestMapping("/getUser")
     ResultEntity getUser(String openid) {
         User user = userService.getUser(openid);
+        UserInf userInf = userInfService.selectByOpenid(new UserInf(user.getOpenid(), null, null));
         if (user == null) {
             return ResultEntity.error("用户不存在", null);
         } else {
-            return ResultEntity.success("查询成功", user);
+            return ResultEntity.success("查询成功", user.toUserPlus(userInf));
         }
     }
 
     /**
      * @api {POST} /user/selectByBanji selectByBanji
-     * @apiVersion 1.0.0
+     * @apiVersion 6.0.0
      * @apiGroup UserController
      * @apiName selectByBanji
-     * @apiDescription 返回你的同班同学信息 然后你可以去蹭他们选的课
+     * @apiDescription 返回你的同班同学信息 然后你可以去蹭他们选的课 返回结果封装了一层 对象携带头像和昵称
      * @apiParam (请求参数) {String} school 学校
      * @apiParam (请求参数) {String} college 学院
      * @apiParam (请求参数) {String} major 专业
-     * @apiParam (请求参数) {Number} grade 年级
+     * @apiParam (请求参数) {String} grade 年级
      * @apiParam (请求参数) {String} banji 班级
      * @apiParamExample 请求参数示例
-     * college=L2hdU1MEvb&major=80Xf&school=yGxOPAqQL&grade=6220&banji=qvqAUHZtzT
+     * college=kAKfyeKoG&major=8F698WZ5&school=tB15T&grade=q&banji=pifj
      * @apiSuccess (响应结果) {Number} code
      * @apiSuccess (响应结果) {String} msg
      * @apiSuccess (响应结果) {Object} data
      * @apiSuccessExample 响应结果示例
-     * {"msg":"b3B7","code":461,"data":{}}
+     * {"msg":"jfH","code":2196,"data":{}}
      */
     @RequestMapping("/selectByBanji")
     ResultEntity selectByBanji(@RequestParam("school") String school, @RequestParam("college") String college, @RequestParam("major") String major, @RequestParam("grade") String grade, @RequestParam("banji") String banji) {
@@ -127,21 +133,27 @@ public class UserController {
         if (users.isEmpty()) {
             return ResultEntity.success("结果为空", users);
         } else {
-            return ResultEntity.success("ok", users);
+//            return ResultEntity.success("ok", users);
+            List<UserPlus> userPlusList = new ArrayList<>();
+            for (User user : users) {
+                UserInf userInf = userInfService.selectByOpenid(new UserInf(user.getOpenid(), null, null));
+                userPlusList.add(user.toUserPlus(userInf));
+            }
+            return ResultEntity.success("ok", userPlusList);
         }
 
     }
 
     /**
      * @api {POST} /user/selectByGrade selectByGrade
-     * @apiVersion 1.0.0
+     * @apiVersion 6.0.0
      * @apiGroup UserController
      * @apiName selectByGrade
-     * @apiDescription 返回你的同年级同学信息 用来看他们的选课 蹭课
+     * @apiDescription 返回你的同年级同学信息 用来看他们的选课 蹭课 返回结果封装了一层 对象携带头像和昵称
      * @apiParam (请求参数) {String} school 学校
      * @apiParam (请求参数) {String} college 学院
      * @apiParam (请求参数) {String} major 专业
-     * @apiParam (请求参数) {Number} grade 年级
+     * @apiParam (请求参数) {String} grade 年级
      * @apiParamExample 请求参数示例
      * college=wNr0k1QlT5&major=j08wL2zisa&school=UigO&grade=4168
      * @apiSuccess (响应结果) {Number} code
@@ -156,7 +168,12 @@ public class UserController {
         if (users.isEmpty()) {
             return ResultEntity.success("结果为空", users);
         } else {
-            return ResultEntity.success("ok", users);
+            List<UserPlus> userPlusList = new ArrayList<>();
+            for (User user : users) {
+                UserInf userInf = userInfService.selectByOpenid(new UserInf(user.getOpenid(), null, null));
+                userPlusList.add(user.toUserPlus(userInf));
+            }
+            return ResultEntity.success("ok", userPlusList);
         }
     }
 }
