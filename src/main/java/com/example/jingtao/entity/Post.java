@@ -56,7 +56,7 @@ public class Post {
     public PostPlus toPostPlus(List<PostImage> imageList) {
         ArrayList<String> list = new ArrayList<>();
 
-        String url = "/post/getImg?postId=" + postId +"&imageId=";
+        String url = "http://7c928a21bb41.ngrok.io/post/getImg?postId=" + postId +"&imageId=";
         for (int i = 0; i < imageList.size(); i++) {
             list.add(url + imageList.get(i).getImageId());
         }

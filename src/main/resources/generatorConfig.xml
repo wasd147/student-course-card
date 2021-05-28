@@ -69,12 +69,12 @@
         <!--               enableUpdateByPrimaryKey="true"-->
         <!--               enableInsert="true"-->
         <!--        ></table>-->
-        <table tableName="userinf"
-               domainObjectName="UserInf"
-               enableSelectByPrimaryKey="true"
-               enableDeleteByPrimaryKey="true"
-               enableUpdateByPrimaryKey="true"
-               enableInsert="true"
-        ></table>
+<!--        <table tableName="userinf"-->
+<!--               domainObjectName="UserInf"-->
+<!--               enableSelectByPrimaryKey="true"-->
+<!--               enableDeleteByPrimaryKey="true"-->
+<!--               enableUpdateByPrimaryKey="true"-->
+<!--               enableInsert="true"-->
+<!--        ></table>-->
     </context>
 </generatorConfiguration>

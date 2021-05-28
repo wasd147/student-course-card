@@ -59,7 +59,13 @@ public class User {
     }
 
     public UserPlus toUserPlus(UserInf userInf) {
-        return new UserPlus(this.openid, this.school, this.college, this.major, this.grade, this.banji, userInf.getNickname(), userInf.getHeadImg());
+        if (userInf != null) {
+            return new UserPlus(this.openid, this.school, this.college, this.major, this.grade, this.banji, userInf.getNickname(), userInf.getHeadImg());
+
+        } else {
+            return new UserPlus(this.openid, this.school, this.college, this.major, this.grade, this.banji, null, null);
+
+        }
     }
 
     /**

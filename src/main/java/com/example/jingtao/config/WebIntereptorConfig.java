@@ -9,6 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebIntereptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyIntereptor()).addPathPatterns("/**").excludePathPatterns("/login", "/notlogin");
+        registry.addInterceptor(new MyIntereptor()).addPathPatterns("/**").excludePathPatterns("/login", "/notlogin","/post/getImg");
     }
 }

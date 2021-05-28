@@ -71,6 +71,7 @@ public class PostController {
      */
     @RequestMapping("/addAPostImage")
     ResultEntity addAPostImage(@RequestParam("file") MultipartFile file, @RequestParam("postId") String postId, @RequestParam("imageId") int imageId) {
+        System.out.println(imageId);
         byte[] image = null;
         try {
             image = file.getBytes();
@@ -288,6 +289,7 @@ public class PostController {
      */
     @RequestMapping("/getImg")
     void getImg(@RequestParam("postId") String postId, @RequestParam("imageId") int imageId, HttpServletResponse response) {
+        System.out.println(postId + " " + imageId);
         PostImage img = postService.getImg(postId, imageId);
         byte[] image = img.getImage();
 

@@ -14,8 +14,8 @@
     </resultMap>
     <insert id="insert" parameterType="com.example.jingtao.entity.PostImage">
         insert into post_image
-            (post_id, image)
-        values (#{postId}, #{image,jdbcType=LONGVARBINARY})
+            (post_id, image,image_id)
+        values (#{postId}, #{image,jdbcType=LONGVARBINARY},#{imageId})
     </insert>
     <delete id="deletePostImageByPostId">
         delete

@@ -1947,10 +1947,10 @@ define({ "api": [
     "type": "POST",
     "url": "/user/getUser",
     "title": "getUser",
-    "version": "1.0.0",
+    "version": "6.0.0",
     "group": "UserController",
     "name": "getUser",
-    "description": "<p>根据openid获取用户信息</p>",
+    "description": "<p>根据openid获取用户信息 返回结果封装了一层 对象携带头像和昵称</p>",
     "parameter": {
       "fields": {
         "请求参数": [
@@ -2012,10 +2012,10 @@ define({ "api": [
     "type": "POST",
     "url": "/user/selectByBanji",
     "title": "selectByBanji",
-    "version": "1.0.0",
+    "version": "6.0.0",
     "group": "UserController",
     "name": "selectByBanji",
-    "description": "<p>返回你的同班同学信息 然后你可以去蹭他们选的课</p>",
+    "description": "<p>返回你的同班同学信息 然后你可以去蹭他们选的课 返回结果封装了一层 对象携带头像和昵称</p>",
     "parameter": {
       "fields": {
         "请求参数": [
@@ -2042,7 +2042,7 @@ define({ "api": [
           },
           {
             "group": "请求参数",
-            "type": "Number",
+            "type": "String",
             "optional": false,
             "field": "grade",
             "description": "<p>年级</p>"
@@ -2059,7 +2059,7 @@ define({ "api": [
       "examples": [
         {
           "title": "请求参数示例",
-          "content": "college=L2hdU1MEvb&major=80Xf&school=yGxOPAqQL&grade=6220&banji=qvqAUHZtzT",
+          "content": "college=kAKfyeKoG&major=8F698WZ5&school=tB15T&grade=q&banji=pifj",
           "type": "json"
         }
       ]
@@ -2093,7 +2093,7 @@ define({ "api": [
       "examples": [
         {
           "title": "响应结果示例",
-          "content": "{\"msg\":\"b3B7\",\"code\":461,\"data\":{}}",
+          "content": "{\"msg\":\"jfH\",\"code\":2196,\"data\":{}}",
           "type": "json"
         }
       ]
@@ -2105,10 +2105,10 @@ define({ "api": [
     "type": "POST",
     "url": "/user/selectByGrade",
     "title": "selectByGrade",
-    "version": "1.0.0",
+    "version": "6.0.0",
     "group": "UserController",
     "name": "selectByGrade",
-    "description": "<p>返回你的同年级同学信息 用来看他们的选课 蹭课</p>",
+    "description": "<p>返回你的同年级同学信息 用来看他们的选课 蹭课 返回结果封装了一层 对象携带头像和昵称</p>",
     "parameter": {
       "fields": {
         "请求参数": [
@@ -2135,7 +2135,7 @@ define({ "api": [
           },
           {
             "group": "请求参数",
-            "type": "Number",
+            "type": "String",
             "optional": false,
             "field": "grade",
             "description": "<p>年级</p>"
@@ -2286,5 +2286,228 @@ define({ "api": [
     },
     "filename": "src/main/java/com/example/jingtao/contrller/UserController.java",
     "groupTitle": "UserController"
+  },
+  {
+    "type": "POST",
+    "url": "/userInf/addAUserInf",
+    "title": "addAUserInf",
+    "version": "6.0.0",
+    "group": "UserInfController",
+    "name": "addAUserInf",
+    "description": "<p>添加一个用户信息 openid  昵称 头像链接</p>",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "openid",
+            "description": ""
+          },
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "nickname",
+            "description": ""
+          },
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "headImg",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "请求参数示例",
+          "content": "headImg=jKwZ8chi4W&openid=qxKx&nickname=c4l",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "响应结果": [
+          {
+            "group": "响应结果",
+            "type": "Number",
+            "optional": false,
+            "field": "code",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "Object",
+            "optional": false,
+            "field": "data",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "响应结果示例",
+          "content": "{\"msg\":\"15VKd\",\"code\":4128,\"data\":{}}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/com/example/jingtao/contrller/UserInfController.java",
+    "groupTitle": "UserInfController"
+  },
+  {
+    "type": "POST",
+    "url": "/userInf/getUserInfByOpenid",
+    "title": "getUserInfByOpenid",
+    "version": "6.0.0",
+    "group": "UserInfController",
+    "name": "getUserInfByOpenid",
+    "description": "<p>通过openid获取用户信息  可以判断该用户是否已经存在信息 来决定调用更新还是增加</p>",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "openid",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "请求参数示例",
+          "content": "openid=0XfWY",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "响应结果": [
+          {
+            "group": "响应结果",
+            "type": "Number",
+            "optional": false,
+            "field": "code",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "Object",
+            "optional": false,
+            "field": "data",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "响应结果示例",
+          "content": "{\"msg\":\"GlNdhP3huo\",\"code\":1548,\"data\":{}}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/com/example/jingtao/contrller/UserInfController.java",
+    "groupTitle": "UserInfController"
+  },
+  {
+    "type": "POST",
+    "url": "/userInf/updateUserInf",
+    "title": "updateUserInf",
+    "version": "6.0.0",
+    "group": "UserInfController",
+    "name": "updateUserInf",
+    "description": "<p>更新一个用户信息</p>",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "openid",
+            "description": "<p>This field was generated by MyBatis Generator.      This field corresponds to the database column userinf.openid</p>"
+          },
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "nickname",
+            "description": "<p>This field was generated by MyBatis Generator.      This field corresponds to the database column userinf.nickname</p>"
+          },
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "headImg",
+            "description": "<p>This field was generated by MyBatis Generator.      This field corresponds to the database column userinf.head_img</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "请求参数示例",
+          "content": "headImg=Uirs9ZI&openid=H&nickname=2GaV3",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "响应结果": [
+          {
+            "group": "响应结果",
+            "type": "Number",
+            "optional": false,
+            "field": "code",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "Object",
+            "optional": false,
+            "field": "data",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "响应结果示例",
+          "content": "{\"msg\":\"BQC6I\",\"code\":6210,\"data\":{}}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/com/example/jingtao/contrller/UserInfController.java",
+    "groupTitle": "UserInfController"
   }
 ] });
