@@ -72,11 +72,13 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        for (Post post : res_post) {
-            //为每个post匹配他的图片
-            List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
-            //返回这个图片集合 将该集合处理后挂载到post上
-            postPlusList.add(post.toPostPlus(postImages));
+        if (res_post.isEmpty() == false) {
+            for (Post post : res_post) {
+                //为每个post匹配他的图片
+                List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
+                //返回这个图片集合 将该集合处理后挂载到post上
+                postPlusList.add(post.toPostPlus(postImages));
+            }
         }
         //挂载完毕
         return postPlusList;
@@ -116,11 +118,13 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        for (Post post : res_post) {
-            //为每个post匹配他的图片
-            List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
-            //返回这个图片集合 将该集合处理后挂载到post上
-            postPlusList.add(post.toPostPlus(postImages));
+        if (res_post.isEmpty() == false) {
+            for (Post post : res_post) {
+                //为每个post匹配他的图片
+                List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
+                //返回这个图片集合 将该集合处理后挂载到post上
+                postPlusList.add(post.toPostPlus(postImages));
+            }
         }
         //挂载完毕
         return postPlusList;
@@ -150,11 +154,13 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        for (Post post : res_post) {
-            //为每个post匹配他的图片
-            List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
-            //返回这个图片集合 将该集合处理后挂载到post上
-            postPlusList.add(post.toPostPlus(postImages));
+        if (res_post.isEmpty() == false) {
+            for (Post post : res_post) {
+                //为每个post匹配他的图片
+                List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
+                //返回这个图片集合 将该集合处理后挂载到post上
+                postPlusList.add(post.toPostPlus(postImages));
+            }
         }
         //挂载完毕
         return postPlusList;
@@ -193,11 +199,13 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        for (Post post : res_post) {
-            //为每个post匹配他的图片
-            List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
-            //返回这个图片集合 将该集合处理后挂载到post上
-            postPlusList.add(post.toPostPlus(postImages));
+        if (res_post.isEmpty() == false) {
+            for (Post post : res_post) {
+                //为每个post匹配他的图片
+                List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
+                //返回这个图片集合 将该集合处理后挂载到post上
+                postPlusList.add(post.toPostPlus(postImages));
+            }
         }
         //挂载完毕
         return postPlusList;
@@ -227,11 +235,13 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        for (Post post : res_post) {
-            //为每个post匹配他的图片
-            List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
-            //返回这个图片集合 将该集合处理后挂载到post上
-            postPlusList.add(post.toPostPlus(postImages));
+        if (res_post.isEmpty() == false) {
+            for (Post post : res_post) {
+                //为每个post匹配他的图片
+                List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
+                //返回这个图片集合 将该集合处理后挂载到post上
+                postPlusList.add(post.toPostPlus(postImages));
+            }
         }
         //挂载完毕
         return postPlusList;
