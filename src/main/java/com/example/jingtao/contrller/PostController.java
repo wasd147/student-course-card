@@ -13,6 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
@@ -188,6 +192,12 @@ public class PostController {
     Map<String, Object> getFirstPagePostBySchool(@RequestParam("school") String school, @RequestParam("page") String page, @RequestParam("num") String num) {
         page = "1";
         Date now = new Date();
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String time= LocalDateTime.now().format(format);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String time = LocalDateTime.now().format(formatter);
+
+
         List<PostPlus> firstPagePostBySchool = postService.getFirstPagePostBySchool(school, Integer.parseInt(page), Integer.parseInt(num));
         List<ResultWithUserInf> list = new ArrayList<>();
         for (PostPlus postPlus : firstPagePostBySchool) {
@@ -197,7 +207,7 @@ public class PostController {
 
 
         Map<String, Object> map = new HashMap<>();
-        map.put("time", now);
+        map.put("time", time);
         map.put("postlist", list);
         return map;
     }
@@ -225,8 +235,14 @@ public class PostController {
      */
     @RequestMapping("/getPagePostBySchool")
     List<ResultWithUserInf> getPagePostBySchool(@RequestParam("school") String school, @RequestParam("page") String page, @RequestParam("num") String num, @RequestParam("time") String time) {
-        Date date = new Date(time);
-        System.out.println(date);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         List<PostPlus> pagePostBySchool = postService.getPagePostBySchool(school, Integer.parseInt(page), Integer.parseInt(num), date);
         List<ResultWithUserInf> list = new ArrayList<>();
         for (PostPlus postPlus : pagePostBySchool) {
@@ -254,7 +270,9 @@ public class PostController {
      */
     @RequestMapping("/getAllFistPagePost")
     Map<String, Object> getAllFistPagePost(@RequestParam("page") String page, @RequestParam("num") String num) {
-        Date date = new Date();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String time = LocalDateTime.now().format(formatter);
+
         page = "1";
         List<PostPlus> allFistPagePost = postService.getAllFistPagePost(Integer.parseInt(page), Integer.parseInt(num));
         List<ResultWithUserInf> list = new ArrayList<>();
@@ -265,7 +283,7 @@ public class PostController {
 
 
         Map<String, Object> map = new HashMap<>();
-        map.put("time", date);
+        map.put("time", time);
         map.put("postlist", list);
         return map;
 
@@ -293,8 +311,13 @@ public class PostController {
      */
     @RequestMapping("/getAllPagePost")
     List<ResultWithUserInf> getAllPagePost(@RequestParam("page") String page, @RequestParam("num") String num, @RequestParam("time") String time) {
-        Date date = new Date(time);
-        System.out.println(date);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         List<PostPlus> allPagePost = postService.getAllPagePost(Integer.parseInt(page), Integer.parseInt(num), date);
 
         List<ResultWithUserInf> list = new ArrayList<>();
