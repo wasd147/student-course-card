@@ -266,7 +266,7 @@ public class PostController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("time", date);
-        map.put("postlist", allFistPagePost);
+        map.put("postlist", list);
         return map;
 
     }
