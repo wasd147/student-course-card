@@ -66,7 +66,7 @@ public class PostService {
             if (e_index < order.size()) {
                 res_post = order.subList(b_index, e_index+1);
             } else {
-                res_post = order.subList(e_index, order.size());
+                res_post = order.subList(b_index, order.size());
             }
         }
         System.out.println("res_post:" + res_post);
@@ -112,7 +112,7 @@ public class PostService {
             if (e_index < order.size()) {
                 res_post = order.subList(b_index, e_index+1);
             } else {
-                res_post = order.subList(e_index, order.size());
+                res_post = order.subList(b_index, order.size());
             }
         }
         System.out.println("res_post:" + res_post);
@@ -148,7 +148,7 @@ public class PostService {
             if (e_index < order.size()) {
                 res_post = order.subList(b_index, e_index+1);
             } else {
-                res_post = order.subList(e_index, order.size());
+                res_post = order.subList(b_index, order.size());
             }
         }
         System.out.println("res_post:" + res_post);
@@ -193,7 +193,7 @@ public class PostService {
             if (e_index < order.size()) {
                 res_post = order.subList(b_index, e_index+1);
             } else {
-                res_post = order.subList(e_index, order.size());
+                res_post = order.subList(b_index, order.size());
             }
         }
         System.out.println("res_post:" + res_post);
@@ -229,7 +229,7 @@ public class PostService {
             if (e_index < order.size()) {
                 res_post = order.subList(b_index, e_index+1);
             } else {
-                res_post = order.subList(e_index, order.size());
+                res_post = order.subList(b_index, order.size());
             }
         }
         System.out.println("res_post:" + res_post);
