@@ -20,6 +20,7 @@ import java.util.*;
 public class PostController {
     @Autowired
     private PostService postService;
+    @Autowired
     private UserInfService userInfService;
 
     /**
@@ -132,6 +133,7 @@ public class PostController {
         for (PostPlus postPlus : postByOpenid) {
             list.add(new ResultWithUserInf(postPlus, userInf));
         }
+        System.out.println(list);
         return list;
 
     }
