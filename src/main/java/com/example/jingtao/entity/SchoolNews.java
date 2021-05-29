@@ -54,7 +54,7 @@ public class SchoolNews {
     }
 
     public SchoolNewsPlus toSchoolNewsPlus() {
-        String url = "/news/getImg";
+        String url = "http://123.56.220.39:8088/news/getImg";
         return new SchoolNewsPlus(title, content, url + "?title=" + title, time);
     }
 

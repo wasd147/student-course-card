@@ -1,6 +1,6 @@
 {
   "name": "微信小程序java后台接口文档",
-  "version": "6.0.0",
-  "description": "心宜快写页面！！！"
+  "version": "7.0.0",
+  "description": "增加了帖子的用户信息补全 分页查询"
 }
 

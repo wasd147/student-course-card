@@ -29,11 +29,17 @@ import java.util.UUID;
 
 @SpringBootTest
 class JingtaoApplicationTests {
+    @Autowired
+    private PostService postService;
 
+    @Test
+    public void wasd() {
+        //List<PostPlus> wasd = postService.getPagePostByOpenid("oUw7p5GBwO8DmwXj3YfeEl6uuq4s", 1, 10);
+        List<PostPlus> wasd = postService.getFirstPagePostBySchool("山东大学", 1, 10);
+        System.out.println(wasd);
 
-
-
-
-
-
+        for (PostPlus postPlus : wasd) {
+            System.out.println(postPlus);
+        }
+    }
 }

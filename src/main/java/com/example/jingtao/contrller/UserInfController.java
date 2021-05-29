@@ -32,7 +32,7 @@ public class UserInfController {
      * {"msg":"15VKd","code":4128,"data":{}}
      */
     @RequestMapping("/addAUserInf")
-    public ResultEntity addAUserInf(@RequestParam("userInf") UserInf userInf) {
+    public ResultEntity addAUserInf( UserInf userInf) {
         UserInf userInf1 = userInfService.selectByOpenid(userInf);
         if (userInf1 == null) {
             userInfService.addAUserInf(userInf);
@@ -60,7 +60,7 @@ public class UserInfController {
      * {"msg":"BQC6I","code":6210,"data":{}}
      */
     @RequestMapping("/updateUserInf")
-    public ResultEntity updateUserInf(@RequestParam("userInf") UserInf userInf) {
+    public ResultEntity updateUserInf(UserInf userInf) {
         UserInf userInf1 = userInfService.selectByOpenid(userInf);
         if (userInf1 == null) {
             userInfService.addAUserInf(userInf);
@@ -87,7 +87,7 @@ public class UserInfController {
      * {"msg":"GlNdhP3huo","code":1548,"data":{}}
      */
     @RequestMapping("/getUserInfByOpenid")
-    public ResultEntity getUserInfByOpenid(@RequestParam("openid") String openid) {
+    public ResultEntity getUserInfByOpenid(String openid) {
         UserInf userInf = userInfService.selectByOpenid(new UserInf(openid, null, null));
         return ResultEntity.success("ok", userInf);
     }
