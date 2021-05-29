@@ -58,13 +58,13 @@ public class PostService {
         List<Post> order = OrderByTimeUtils.order(postByOpenid);
         System.out.println("order:" + order);
         int b_index = (page - 1) * num;
-        int e_index = page * num;
+        int e_index = page * num-1;
         List<Post> res_post = null;
         if (b_index >= order.size()) {
             res_post = null;
         } else {
-            if (e_index <= order.size()) {
-                res_post = order.subList(b_index, e_index);
+            if (e_index < order.size()) {
+                res_post = order.subList(b_index, e_index+1);
             } else {
                 res_post = order.subList(e_index, order.size());
             }
@@ -104,13 +104,13 @@ public class PostService {
         List<Post> order = OrderByTimeUtils.order(postBySchool);
         System.out.println("order:" + order);
         int b_index = (page - 1) * num;
-        int e_index = page * num;
+        int e_index = page * num-1;
         List<Post> res_post = null;
         if (b_index >= order.size()) {
             res_post = null;
         } else {
-            if (e_index <= order.size()) {
-                res_post = order.subList(b_index, e_index);
+            if (e_index < order.size()) {
+                res_post = order.subList(b_index, e_index+1);
             } else {
                 res_post = order.subList(e_index, order.size());
             }
@@ -140,13 +140,13 @@ public class PostService {
         List<Post> order = OrderByTimeUtils.order(postBySchool);
         System.out.println("order:" + order);
         int b_index = (page - 1) * num;
-        int e_index = page * num;
+        int e_index = page * num-1;
         List<Post> res_post = null;
         if (b_index >= order.size()) {
             res_post = null;
         } else {
-            if (e_index <= order.size()) {
-                res_post = order.subList(b_index, e_index);
+            if (e_index < order.size()) {
+                res_post = order.subList(b_index, e_index+1);
             } else {
                 res_post = order.subList(e_index, order.size());
             }
@@ -185,13 +185,13 @@ public class PostService {
         List<Post> order = OrderByTimeUtils.order(allPost);
         System.out.println("order:" + order);
         int b_index = (page - 1) * num;
-        int e_index = page * num;
+        int e_index = page * num-1;
         List<Post> res_post = null;
         if (b_index >= order.size()) {
             res_post = null;
         } else {
-            if (e_index <= order.size()) {
-                res_post = order.subList(b_index, e_index);
+            if (e_index < order.size()) {
+                res_post = order.subList(b_index, e_index+1);
             } else {
                 res_post = order.subList(e_index, order.size());
             }
@@ -221,13 +221,13 @@ public class PostService {
         List<Post> order = OrderByTimeUtils.order(allPost);
         System.out.println("order:" + order);
         int b_index = (page - 1) * num;
-        int e_index = page * num;
+        int e_index = page * num-1;
         List<Post> res_post = null;
         if (b_index >= order.size()) {
             res_post = null;
         } else {
-            if (e_index <= order.size()) {
-                res_post = order.subList(b_index, e_index);
+            if (e_index < order.size()) {
+                res_post = order.subList(b_index, e_index+1);
             } else {
                 res_post = order.subList(e_index, order.size());
             }
