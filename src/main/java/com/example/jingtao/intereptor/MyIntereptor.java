@@ -15,11 +15,10 @@ public class MyIntereptor implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println(new Date().toString()+" "+ request.getRemoteAddr() + "进入拦截器 " + request.getRequestURI());
-        //System.out.println(request.getRequestURI());
-        // String token = request.getParameter("token");
+
         String token = request.getHeader("token");
         if (token == null) {
-            System.out.println("不存在");
+            System.out.println("请求头不存在token");
             //token不存在
             //之后可能要写的处理
             response.sendRedirect("/notlogin");

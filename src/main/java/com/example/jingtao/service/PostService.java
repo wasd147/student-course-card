@@ -72,7 +72,7 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        if (res_post.isEmpty() == false) {
+        if (res_post!=null) {
             for (Post post : res_post) {
                 //为每个post匹配他的图片
                 List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
@@ -118,7 +118,7 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        if (res_post.isEmpty() == false) {
+        if (res_post!=null) {
             for (Post post : res_post) {
                 //为每个post匹配他的图片
                 List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
@@ -154,7 +154,7 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        if (res_post.isEmpty() == false) {
+        if (res_post!=null) {
             for (Post post : res_post) {
                 //为每个post匹配他的图片
                 List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
@@ -199,7 +199,7 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        if (res_post.isEmpty() == false) {
+        if (res_post!=null) {
             for (Post post : res_post) {
                 //为每个post匹配他的图片
                 List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());
@@ -235,7 +235,7 @@ public class PostService {
         System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
-        if (res_post.isEmpty() == false) {
+        if (res_post!=null) {
             for (Post post : res_post) {
                 //为每个post匹配他的图片
                 List<PostImage> postImages = postImageMapper.selectByPostId(post.getPostId());

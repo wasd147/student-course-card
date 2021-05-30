@@ -59,57 +59,57 @@ public class NoteController {
      * time 发送时间 在数据库是datatime对象 你可以根据这个来排序
      * look 发送时默认为0 当接收方看到消息时 该值修改为1 代表对方已读
      * {
-     *     "code": 1,
-     *     "msg": "ok",
-     *     "data": {
-     *         "xinyi": [
-     *             {
-     *                 "sender": "xinyi",
-     *                 "accepter": "jingtao",
-     *                 "message": "vsdvhbiewvebajosvh",
-     *                 "time": "2021-05-15T14:03:19.000+00:00",
-     *                 "look": 0
-     *             },
-     *             {
-     *                 "sender": "jingtao",
-     *                 "accepter": "xinyi",
-     *                 "message": "hello",
-     *                 "time": "2021-05-15T05:12:44.000+00:00",
-     *                 "look": 0
-     *             },
-     *             {
-     *                 "sender": "jingtao",
-     *                 "accepter": "xinyi",
-     *                 "message": "wasd",
-     *                 "time": "2021-05-15T05:49:36.000+00:00",
-     *                 "look": 0
-     *             }
-     *         ],
-     *         "asvcvyewvyv": [
-     *             {
-     *                 "sender": "asvcvyewvyv",
-     *                 "accepter": "jingtao",
-     *                 "message": "wevgvwibciq",
-     *                 "time": "2021-05-15T05:49:36.000+00:00",
-     *                 "look": 0
-     *             }
-     *         ],
-     *         "wasd": [
-     *             {
-     *                 "sender": "jingtao",
-     *                 "accepter": "wasd",
-     *                 "message": "wasd",
-     *                 "time": "2021-05-15T05:58:01.000+00:00",
-     *                 "look": 0
-     *             }
-     *         ]
-     *     }
+     * "code": 1,
+     * "msg": "ok",
+     * "data": {
+     * "xinyi": [
+     * {
+     * "sender": "xinyi",
+     * "accepter": "jingtao",
+     * "message": "vsdvhbiewvebajosvh",
+     * "time": "2021-05-15T14:03:19.000+00:00",
+     * "look": 0
+     * },
+     * {
+     * "sender": "jingtao",
+     * "accepter": "xinyi",
+     * "message": "hello",
+     * "time": "2021-05-15T05:12:44.000+00:00",
+     * "look": 0
+     * },
+     * {
+     * "sender": "jingtao",
+     * "accepter": "xinyi",
+     * "message": "wasd",
+     * "time": "2021-05-15T05:49:36.000+00:00",
+     * "look": 0
+     * }
+     * ],
+     * "asvcvyewvyv": [
+     * {
+     * "sender": "asvcvyewvyv",
+     * "accepter": "jingtao",
+     * "message": "wevgvwibciq",
+     * "time": "2021-05-15T05:49:36.000+00:00",
+     * "look": 0
+     * }
+     * ],
+     * "wasd": [
+     * {
+     * "sender": "jingtao",
+     * "accepter": "wasd",
+     * "message": "wasd",
+     * "time": "2021-05-15T05:58:01.000+00:00",
+     * "look": 0
+     * }
+     * ]
+     * }
      * }
      */
     @RequestMapping("/getNotes")
-    ResultEntity getNotes(@RequestParam("openid") String openid) {
+    Map getNotes(@RequestParam("openid") String openid) {
         Map notes = noteService.getNotes(openid);
 
-        return ResultEntity.success("ok", notes);
+        return notes;
     }
 }

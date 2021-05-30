@@ -51,7 +51,10 @@ public class SchoolNewsController {
      * {"msg":"8","code":4474,"data":{}}
      */
     @RequestMapping("/addASchoolNews")
-    ResultEntity addASchoolNews(HttpServletRequest request, @RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("file") MultipartFile file) {
+    ResultEntity addASchoolNews(HttpServletRequest request, @RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("file") MultipartFile file, @RequestParam("pwd") String pwd) {
+        if (!pwd.equals("jingtao-xinyi")) {
+            return ResultEntity.error("密码错误", null);
+        }
         byte[] img = null;
         try {
             img = file.getBytes();

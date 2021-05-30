@@ -28,7 +28,7 @@ public class ResultWithUserInf {
             SchoolNewsPlus newsPlus = (SchoolNewsPlus) data;
             this.data = data;
             this.userInf = null;
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             this.time = format.format(newsPlus.getTime());
         }
 

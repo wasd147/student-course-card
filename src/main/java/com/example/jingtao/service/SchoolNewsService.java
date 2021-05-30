@@ -52,7 +52,7 @@ public class SchoolNewsService {
             }
         }
         List<SchoolNewsPlus> list = new ArrayList<>();
-        if (res_post.isEmpty() == false) {
+        if (res_post != null) {
             for (SchoolNews schoolNews : res_post) {
                 list.add(schoolNews.toSchoolNewsPlus());
 
@@ -81,7 +81,7 @@ public class SchoolNewsService {
             }
         }
         List<SchoolNewsPlus> list = new ArrayList<>();
-        if (res_post.isEmpty() == false) {
+        if (res_post != null) {
             for (SchoolNews schoolNews : res_post) {
                 list.add(schoolNews.toSchoolNewsPlus());
 

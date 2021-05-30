@@ -21,6 +21,7 @@ public class UserInfService {
     }
 
     public UserInf selectByOpenid(UserInf userInf) {
+
         UserInf userInf1 = userInfMapper.selectByPrimaryKey(userInf.getOpenid());
         return userInf1;
     }
