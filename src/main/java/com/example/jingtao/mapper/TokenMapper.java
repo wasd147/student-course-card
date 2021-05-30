@@ -2,10 +2,12 @@ package com.example.jingtao.mapper;
 
 import com.example.jingtao.entity.Token;
 import com.example.jingtao.entity.TokenExample;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface TokenMapper {
     /**
@@ -95,4 +97,6 @@ public interface TokenMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Token record);
+
+    int update(Token token);
 }

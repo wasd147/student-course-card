@@ -44,7 +44,12 @@ public class TokenUtils {
             calendar.add(Calendar.DAY_OF_YEAR, 1);//1tian
             Date createDatePlus = calendar.getTime();
             if ((createDatePlus.compareTo(nowDate)) == (1)) {
+                //更新token时间
+                resToken.setCreatTime(format.format(new Date()));
+                tokenMapper.updateByPrimaryKey(resToken);
                 return 1;
+
+
             } else {
                 return (-1);
             }

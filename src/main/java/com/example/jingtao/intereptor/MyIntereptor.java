@@ -28,13 +28,13 @@ public class MyIntereptor implements HandlerInterceptor {
             int res = TokenUtils.testToken(token);
             if (res == (0)) {
                 //token无效
-                System.out.println("查询为空");
+                System.out.println("token在数据库中不存在");
                 response.sendRedirect("/notlogin");
                 return false;
             } else {
                 if (res == (-1)) {
                     //token过期
-                    System.out.println("过期");
+                    System.out.println("token已经过期");
                     response.sendRedirect("/notlogin");
                     TokenUtils.deleteOutToken(token);
                     return false;

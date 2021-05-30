@@ -133,6 +133,6 @@ public class Token {
      * @mbggenerated
      */
     public void setCreatTime(String creatTime) {
-        this.creatTime = creatTime == null ? null : creatTime.trim();
+        this.creatTime = creatTime;
     }
 }
