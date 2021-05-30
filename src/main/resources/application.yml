@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/wxapp?serverTimezone=Asia/Shanghai
     username: root
-    password: zzzsyzxllove3
+    password: root
     hikari:
 #      connection-test-query: SELECT 1 FROM DUAL
       connection-timeout: 600000

@@ -100,7 +100,8 @@ public class UserController {
     @RequestMapping("/getUser")
     ResultEntity getUser(String openid) {
         User user = userService.getUser(openid);
-        UserInf userInf = userInfService.selectByOpenid(new UserInf(user.getOpenid(), null, null));
+        System.out.println(user);
+        UserInf userInf = userInfService.selectByOpenid(new UserInf(openid, null, null));
         if (user == null) {
             return ResultEntity.error("用户不存在", null);
         } else {
