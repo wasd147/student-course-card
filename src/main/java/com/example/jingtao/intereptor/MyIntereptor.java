@@ -8,12 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 public class MyIntereptor implements HandlerInterceptor {
 
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("进入拦截器" + request.getRequestURI());
+        System.out.println(new Date().getTime() +" "+ request.getRemoteAddr() + "进入拦截器 " + request.getRequestURI());
         //System.out.println(request.getRequestURI());
         // String token = request.getParameter("token");
         String token = request.getHeader("token");
