@@ -1,5 +1,7 @@
 package com.example.jingtao.entity;
 
+import com.example.jingtao.config.AddressConfig;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -56,7 +58,7 @@ public class Post {
     public PostPlus toPostPlus(List<PostImage> imageList) {
         ArrayList<String> list = new ArrayList<>();
 
-        String url = "http://d658765fbf41.ngrok.io/post/getImg?postId=" + postId +"&imageId=";
+        String url = AddressConfig.ip + "/post/getImg?postId=" + postId + "&imageId=";
         for (int i = 0; i < imageList.size(); i++) {
             list.add(url + imageList.get(i).getImageId());
         }

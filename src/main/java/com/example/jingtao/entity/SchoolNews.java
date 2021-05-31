@@ -1,5 +1,7 @@
 package com.example.jingtao.entity;
 
+import com.example.jingtao.config.AddressConfig;
+
 import java.util.Arrays;
 import java.util.Date;
 
@@ -54,7 +56,7 @@ public class SchoolNews {
     }
 
     public SchoolNewsPlus toSchoolNewsPlus() {
-        String url = "http://d658765fbf41.ngrok.io/news/getImg";
+        String url = AddressConfig.ip + "/news/getImg";
         return new SchoolNewsPlus(title, content, url + "?title=" + title, time);
     }
 
