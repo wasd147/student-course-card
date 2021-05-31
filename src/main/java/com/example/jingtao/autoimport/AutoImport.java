@@ -51,18 +51,17 @@ public class AutoImport {
         ScriptEngine engine = manager.getEngineByName("js");
         try {
 
-            //获取当前类的所在目录的路径
-            //String path = ExecuteScript.class.getResource("").getPath();
-            //String path = "E:\\源码\\微信小程序开发\\java后台\\src\\main\\java\\com\\example\\jingtao\\autoimport\\";
-            String basePath = null;
-            try {
-                basePath = URLDecoder.decode(Thread.currentThread().getContextClassLoader().getResource("").getPath(), "UTF-8");
-                System.out.println(basePath);
-                basePath += "com\\example\\jingtao\\autoimport\\";
-                System.out.println(basePath);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+
+//            try {
+//                basePath = URLDecoder.decode(Thread.currentThread().getContextClassLoader().getResource("").getPath(), "UTF-8");
+//                System.out.println(basePath);
+//                basePath += "com\\example\\jingtao\\autoimport\\";
+//                System.out.println(basePath);
+//            } catch (UnsupportedEncodingException e) {
+//                e.printStackTrace();
+//            }
+            //打完jar包后该方法不能再用
+            String basePath = "C:\\DataResource\\Resource\\";
             //String path = Class.class.getClass().getResource("/").getPath();
             // FileReader的参数为所要执行的js文件的路径
             engine.eval(new FileReader(basePath + "des.js"));

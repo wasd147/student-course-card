@@ -25,25 +25,5 @@ import java.util.Date;
 
 @SpringBootTest
 class JingtaoApplicationTests {
-    @Autowired
-    private SchoolNewsService schoolNewsService;
-
-    @Autowired
-    private NoteService noteService;
-
-    @Autowired
-    private UserInfService userInfService;
-
-    @Test
-    public void wasd() {
-        Map<UserInf, List<NotePlus>> map = noteService.getNotes("oUw7p5GBwO8DmwXj3YfeEl6uuq4s");
-        for (UserInf userInf : map.keySet()) {
-            for (NotePlus notePlus : map.get(userInf)) {
-                System.out.println(notePlus);
-            }
-            System.out.println("--------------------------------------");
-        }
-
-    }
 
 }
