@@ -1,5 +1,7 @@
 package com.example.jingtao.contrller;
 
+import com.example.jingtao.entity.Contacter;
+import com.example.jingtao.entity.NotePlus;
 import com.example.jingtao.entity.ResultEntity;
 import com.example.jingtao.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,77 +42,56 @@ public class NoteController {
     }
 
     /**
-     * @api {GET} /note/getNotes getNotes
-     * @apiVersion 2.0.0
+     * @api {POST} /note/getContacter getContacter
+     * @apiVersion 9.0.0
+     * @apiGroup NoteController
+     * @apiName getContacter
+     * @apiDescription 用户获取联系人列表  并判断是否有新消息
+     * @apiParam (请求参数) {String} openid
+     * @apiParamExample 请求参数示例
+     * openid=8wQwAPbQ
+     * @apiSuccess (响应结果) {Array} response
+     * @apiSuccess (响应结果) {String} response.openid 联系人openid
+     * @apiSuccess (响应结果) {String} response.nickname 联系人昵称
+     * @apiSuccess (响应结果) {String} response.headImg 联系人头像
+     * @apiSuccess (响应结果) {Number} response.note 该联系人是否发来了新消息   0为存在新消息，需要提醒用户查看   1为没有
+     * @apiSuccessExample 响应结果示例
+     * [{"note":405,"headImg":"i","openid":"EFNAlgyn","nickname":"IewaH565"}]
+     */
+    @RequestMapping("/getContacter")
+    List<Contacter> getContacter(@RequestParam("openid") String openid) {
+        List<Contacter> contacter = noteService.getContacter(openid);
+        return contacter;
+    }
+
+    /**
+     * @api {POST} /note/getNotes getNotes
+     * @apiVersion 9.0.0
      * @apiGroup NoteController
      * @apiName getNotes
-     * @apiDescription 返回该openid的所有纸条记录
-     * @apiParam (请求参数) {String} openid 这个用户的openid
+     * @apiDescription 得到你与这个联系人的聊天记录
+     * @apiParam (请求参数) {String} myOpenid 本用户的openid
+     * @apiParam (请求参数) {String} otherOpenid 联系人的openid
      * @apiParamExample 请求参数示例
-     * openid=Mxu06m2N
-     * @apiSuccess (响应结果) {Number} code
-     * @apiSuccess (响应结果) {String} msg 这是给前端的提示
-     * @apiSuccess (响应结果) {Object} data 这里面放的是一个map map为key 纸条对方 value 本用户与key用户的纸条记录list集合
+     * otherOpenid=t3SbbacodQ&myOpenid=tmWc
+     * @apiSuccess (响应结果) {Array} response
+     * @apiSuccess (响应结果) {Object} response.sender 发送者对象
+     * @apiSuccess (响应结果) {String} response.sender.openid
+     * @apiSuccess (响应结果) {String} response.sender.nickname
+     * @apiSuccess (响应结果) {String} response.sender.headImg
+     * @apiSuccess (响应结果) {Object} response.accepter 接受者对象
+     * @apiSuccess (响应结果) {String} response.accepter.openid
+     * @apiSuccess (响应结果) {String} response.accepter.nickname
+     * @apiSuccess (响应结果) {String} response.accepter.headImg
+     * @apiSuccess (响应结果) {String} response.message 消息内容
+     * @apiSuccess (响应结果) {String} response.time 发送消息 的时间
+     * @apiSuccess (响应结果) {Number} response.look 该消息是否已被接受者读到   已读为1  未读为0
      * @apiSuccessExample 响应结果示例
-     * 查询jingtao的纸条记录 返回的map中分别是 xinyi，asvcvyewvyv，wasd 和jingtao的纸条记录
-     * 纸条记录是一个封装好的对象
-     * sender是发送者openid
-     * accepter是接受者openid
-     * message 内容
-     * time 发送时间 在数据库是datatime对象 你可以根据这个来排序
-     * look 发送时默认为0 当接收方看到消息时 该值修改为1 代表对方已读
-     * {
-     * "code": 1,
-     * "msg": "ok",
-     * "data": {
-     * "xinyi": [
-     * {
-     * "sender": "xinyi",
-     * "accepter": "jingtao",
-     * "message": "vsdvhbiewvebajosvh",
-     * "time": "2021-05-15T14:03:19.000+00:00",
-     * "look": 0
-     * },
-     * {
-     * "sender": "jingtao",
-     * "accepter": "xinyi",
-     * "message": "hello",
-     * "time": "2021-05-15T05:12:44.000+00:00",
-     * "look": 0
-     * },
-     * {
-     * "sender": "jingtao",
-     * "accepter": "xinyi",
-     * "message": "wasd",
-     * "time": "2021-05-15T05:49:36.000+00:00",
-     * "look": 0
-     * }
-     * ],
-     * "asvcvyewvyv": [
-     * {
-     * "sender": "asvcvyewvyv",
-     * "accepter": "jingtao",
-     * "message": "wevgvwibciq",
-     * "time": "2021-05-15T05:49:36.000+00:00",
-     * "look": 0
-     * }
-     * ],
-     * "wasd": [
-     * {
-     * "sender": "jingtao",
-     * "accepter": "wasd",
-     * "message": "wasd",
-     * "time": "2021-05-15T05:58:01.000+00:00",
-     * "look": 0
-     * }
-     * ]
-     * }
-     * }
+     * [{"sender":{"headImg":"4Spr","openid":"NOB8tLM","nickname":"RW7M"},"accepter":{"headImg":"Ot","openid":"Bz","nickname":"6"},"time":"l","message":"iv9uvCG28E","look":5952}]
      */
     @RequestMapping("/getNotes")
-    Map getNotes(@RequestParam("openid") String openid) {
-        Map notes = noteService.getNotes(openid);
-
+    List<NotePlus> getNotes(@RequestParam("myOpenid") String myOpenid, @RequestParam("otherOpenid") String otherOpenid) {
+        List<NotePlus> notes = noteService.getNotes(myOpenid, otherOpenid);
         return notes;
     }
 }

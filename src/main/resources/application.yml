@@ -1,13 +1,11 @@
-
-
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/wxapp?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://123.56.220.39:3306/wxapp?serverTimezone=Asia/Shanghai
     username: root
     password: zzzsyzxllove3
     hikari:
-#      connection-test-query: SELECT 1 FROM DUAL
+      #      connection-test-query: SELECT 1 FROM DUAL
       connection-timeout: 600000
       maximum-pool-size: 500
       max-lifetime: 1800000

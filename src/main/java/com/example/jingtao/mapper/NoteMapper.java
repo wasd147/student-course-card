@@ -15,4 +15,6 @@ public interface NoteMapper {
     List<Note> getNotesByAccepter(String accepter);
 
     void hasLook(Note note);
+
+    List<Note> getNoteBySenderAndAccepter(String sender, String accepter);
 }

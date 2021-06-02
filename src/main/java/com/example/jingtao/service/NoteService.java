@@ -1,5 +1,6 @@
 package com.example.jingtao.service;
 
+import com.example.jingtao.entity.Contacter;
 import com.example.jingtao.entity.Note;
 import com.example.jingtao.entity.NotePlus;
 import com.example.jingtao.entity.UserInf;
@@ -23,9 +24,9 @@ public class NoteService {
 
     }
 
-    public Map getNotes(String openid) {
-        List<Note> notesBySender = noteMapper.getNotesBySender(openid);
-        List<Note> notesByAccepter = noteMapper.getNotesByAccepter(openid);
+    public List<NotePlus> getNotes(String myself, String theOther) {
+        List<Note> notesByAccepter = noteMapper.getNoteBySenderAndAccepter(theOther, myself);
+        List<Note> notesBySender = noteMapper.getNoteBySenderAndAccepter(myself, theOther);
         Map<String, List<Note>> map = new HashMap<>();
 
         if (notesByAccepter != null) {
@@ -48,8 +49,15 @@ public class NoteService {
 
             }
         }
+        Map<UserInf, List<NotePlus>> map1 = toPlus(map);
+        List<NotePlus> list = new ArrayList<>();
+        if (!map1.isEmpty()) {
+            for (Object o : map1.keySet()) {
+                list = map1.get(o);
+            }
+        }
 
-        return toPlus(map);
+        return list;
     }
 
     public void hasLook(List<Note> arrayList) {
@@ -58,7 +66,7 @@ public class NoteService {
         }
     }
 
-    public Map toPlus(Map<String, List<Note>> map) {
+    public Map<UserInf, List<NotePlus>> toPlus(Map<String, List<Note>> map) {
         if (map == null | map.size() == 0) {
             return null;
         }
@@ -76,6 +84,35 @@ public class NoteService {
         }
         return mapPlus;
 
+    }
+
+    public List<Contacter> getContacter(String openid) {
+        List<Note> notesByAccepter = noteMapper.getNotesByAccepter(openid);
+        List<Note> notesBySender = noteMapper.getNotesBySender(openid);
+        List<Contacter> contacterList = new ArrayList<>();//++++
+        Map<String, Contacter> map = new HashMap<>();
+        for (int i = 0; i < notesByAccepter.size(); i++) {
+            if (!map.containsKey(notesByAccepter.get(i).getSender())) {
+                map.put(notesByAccepter.get(i).getSender(), new Contacter(notesByAccepter.get(i).getSender(), notesByAccepter.get(i).getLook()));
+
+            } else {
+                if (notesByAccepter.get(i).getLook() == 0) {
+                    map.put(notesByAccepter.get(i).getSender(), new Contacter(notesByAccepter.get(i).getSender(), notesByAccepter.get(i).getLook()));
+                }
+            }
+
+        }
+        for (int i = 0; i < notesBySender.size(); i++) {
+            if (!map.containsKey(notesBySender.get(i).getAccepter())) {
+                map.put(notesBySender.get(i).getAccepter(), new Contacter(notesBySender.get(i).getAccepter(), 1));
+            }
+        }
+        if (!map.isEmpty()) {
+            for (String s : map.keySet()) {
+                contacterList.add(map.get(s));
+            }
+        }
+        return contacterList;
     }
 }
 

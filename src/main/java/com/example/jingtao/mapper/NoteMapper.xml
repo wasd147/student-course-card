@@ -16,6 +16,13 @@
         from note
         where accepter = #{accepter}
     </select>
+    <select id="getNoteBySenderAndAccepter" resultType="com.example.jingtao.entity.Note">
+        select *
+        from note
+        where sender = #{sender}
+          and accepter = #{accepter}
+
+    </select>
     <update id="hasLook" parameterType="com.example.jingtao.entity.Note">
         update note
         set look=1

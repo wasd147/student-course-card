@@ -411,13 +411,13 @@ define({ "api": [
     "groupTitle": "LoginController"
   },
   {
-    "type": "GET",
-    "url": "/note/getNotes",
-    "title": "getNotes",
-    "version": "2.0.0",
+    "type": "POST",
+    "url": "/note/getContacter",
+    "title": "getContacter",
+    "version": "9.0.0",
     "group": "NoteController",
-    "name": "getNotes",
-    "description": "<p>返回该openid的所有纸条记录</p>",
+    "name": "getContacter",
+    "description": "<p>用户获取联系人列表  并判断是否有新消息</p>",
     "parameter": {
       "fields": {
         "请求参数": [
@@ -426,14 +426,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "openid",
-            "description": "<p>这个用户的openid</p>"
+            "description": ""
           }
         ]
       },
       "examples": [
         {
           "title": "请求参数示例",
-          "content": "openid=Mxu06m2N",
+          "content": "openid=8wQwAPbQ",
           "type": "json"
         }
       ]
@@ -443,31 +443,180 @@ define({ "api": [
         "响应结果": [
           {
             "group": "响应结果",
-            "type": "Number",
+            "type": "Array",
             "optional": false,
-            "field": "code",
+            "field": "response",
             "description": ""
           },
           {
             "group": "响应结果",
             "type": "String",
             "optional": false,
-            "field": "msg",
-            "description": "<p>这是给前端的提示</p>"
+            "field": "response.openid",
+            "description": "<p>联系人openid</p>"
           },
           {
             "group": "响应结果",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "data",
-            "description": "<p>这里面放的是一个map map为key 纸条对方 value 本用户与key用户的纸条记录list集合</p>"
+            "field": "response.nickname",
+            "description": "<p>联系人昵称</p>"
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.headImg",
+            "description": "<p>联系人头像</p>"
+          },
+          {
+            "group": "响应结果",
+            "type": "Number",
+            "optional": false,
+            "field": "response.note",
+            "description": "<p>该联系人是否发来了新消息   0为存在新消息，需要提醒用户查看   1为没有</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "响应结果示例",
-          "content": "查询jingtao的纸条记录 返回的map中分别是 xinyi，asvcvyewvyv，wasd 和jingtao的纸条记录\n纸条记录是一个封装好的对象\nsender是发送者openid\naccepter是接受者openid\nmessage 内容\ntime 发送时间 在数据库是datatime对象 你可以根据这个来排序\nlook 发送时默认为0 当接收方看到消息时 该值修改为1 代表对方已读\n{\n    \"code\": 1,\n    \"msg\": \"ok\",\n    \"data\": {\n        \"xinyi\": [\n            {\n                \"sender\": \"xinyi\",\n                \"accepter\": \"jingtao\",\n                \"message\": \"vsdvhbiewvebajosvh\",\n                \"time\": \"2021-05-15T14:03:19.000+00:00\",\n                \"look\": 0\n            },\n            {\n                \"sender\": \"jingtao\",\n                \"accepter\": \"xinyi\",\n                \"message\": \"hello\",\n                \"time\": \"2021-05-15T05:12:44.000+00:00\",\n                \"look\": 0\n            },\n            {\n                \"sender\": \"jingtao\",\n                \"accepter\": \"xinyi\",\n                \"message\": \"wasd\",\n                \"time\": \"2021-05-15T05:49:36.000+00:00\",\n                \"look\": 0\n            }\n        ],\n        \"asvcvyewvyv\": [\n            {\n                \"sender\": \"asvcvyewvyv\",\n                \"accepter\": \"jingtao\",\n                \"message\": \"wevgvwibciq\",\n                \"time\": \"2021-05-15T05:49:36.000+00:00\",\n                \"look\": 0\n            }\n        ],\n        \"wasd\": [\n            {\n                \"sender\": \"jingtao\",\n                \"accepter\": \"wasd\",\n                \"message\": \"wasd\",\n                \"time\": \"2021-05-15T05:58:01.000+00:00\",\n                \"look\": 0\n            }\n        ]\n    }\n}",
+          "content": "[{\"note\":405,\"headImg\":\"i\",\"openid\":\"EFNAlgyn\",\"nickname\":\"IewaH565\"}]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/com/example/jingtao/contrller/NoteController.java",
+    "groupTitle": "NoteController"
+  },
+  {
+    "type": "POST",
+    "url": "/note/getNotes",
+    "title": "getNotes",
+    "version": "9.0.0",
+    "group": "NoteController",
+    "name": "getNotes",
+    "description": "<p>得到你与这个联系人的聊天记录</p>",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "myOpenid",
+            "description": "<p>本用户的openid</p>"
+          },
+          {
+            "group": "请求参数",
+            "type": "String",
+            "optional": false,
+            "field": "otherOpenid",
+            "description": "<p>联系人的openid</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "请求参数示例",
+          "content": "otherOpenid=t3SbbacodQ&myOpenid=tmWc",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "响应结果": [
+          {
+            "group": "响应结果",
+            "type": "Array",
+            "optional": false,
+            "field": "response",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "Object",
+            "optional": false,
+            "field": "response.sender",
+            "description": "<p>发送者对象</p>"
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.sender.openid",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.sender.nickname",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.sender.headImg",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "Object",
+            "optional": false,
+            "field": "response.accepter",
+            "description": "<p>接受者对象</p>"
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.accepter.openid",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.accepter.nickname",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.accepter.headImg",
+            "description": ""
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.message",
+            "description": "<p>消息内容</p>"
+          },
+          {
+            "group": "响应结果",
+            "type": "String",
+            "optional": false,
+            "field": "response.time",
+            "description": "<p>发送消息 的时间</p>"
+          },
+          {
+            "group": "响应结果",
+            "type": "Number",
+            "optional": false,
+            "field": "response.look",
+            "description": "<p>该消息是否已被接受者读到   已读为1  未读为0</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "响应结果示例",
+          "content": "[{\"sender\":{\"headImg\":\"4Spr\",\"openid\":\"NOB8tLM\",\"nickname\":\"RW7M\"},\"accepter\":{\"headImg\":\"Ot\",\"openid\":\"Bz\",\"nickname\":\"6\"},\"time\":\"l\",\"message\":\"iv9uvCG28E\",\"look\":5952}]",
           "type": "json"
         }
       ]
