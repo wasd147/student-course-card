@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.56.220.39:3306/wxapp?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/wxapp?serverTimezone=Asia/Shanghai
     username: root
     password: zzzsyzxllove3
     hikari:

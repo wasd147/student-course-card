@@ -51,7 +51,7 @@ public class NoteService {
         }
         Map<UserInf, List<NotePlus>> map1 = toPlus(map);
         List<NotePlus> list = new ArrayList<>();
-        if (!map1.isEmpty()) {
+        if (map1 != null) {
             for (Object o : map1.keySet()) {
                 list = map1.get(o);
             }
