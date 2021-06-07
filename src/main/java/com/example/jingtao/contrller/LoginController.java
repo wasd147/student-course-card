@@ -42,7 +42,7 @@ public class LoginController {
      */
     @RequestMapping("/login")
     ResultEntity login(@RequestParam("code") String code) {
-        System.out.println(code);
+        System.out.println("code=" + code);
         String appid;
         String secret;
 
@@ -60,8 +60,8 @@ public class LoginController {
 
         String openid = map.get("openid");
         String session_key = map.get("session_key");
-        System.out.println(openid);
-        System.out.println(session_key);
+        System.out.println("openid=" + openid);
+        System.out.println("session_key=" + session_key);
         UUID uuid = UUID.randomUUID();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String time = LocalDateTime.now().format(formatter);

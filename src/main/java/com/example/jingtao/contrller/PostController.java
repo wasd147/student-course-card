@@ -482,7 +482,7 @@ public class PostController {
      */
     @RequestMapping("/getImg")
     void getImg(@RequestParam("postId") String postId, @RequestParam("imageId") int imageId, HttpServletResponse response) {
-        System.out.println(postId + " " + imageId);
+       // System.out.println(postId + " " + imageId);
         PostImage img = postService.getImg(postId, imageId);
         byte[] image = img.getImage();
 

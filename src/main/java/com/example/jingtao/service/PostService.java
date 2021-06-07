@@ -41,7 +41,7 @@ public class PostService {
 
     public List<PostPlus> getPostByOpenid(String openid) {
         List<Post> postByOpenid = postMapper.getPostByOpenid(openid);
-        System.out.println(postByOpenid);
+        //System.out.println(postByOpenid);
         List<PostPlus> postPlusList = new ArrayList<>();
         for (Post post : postByOpenid) {
             //为每个post匹配他的图片
@@ -56,7 +56,7 @@ public class PostService {
     public List<PostPlus> getPagePostByOpenid(String openid, int page, int num) {
         List<Post> postByOpenid = postMapper.getPostByOpenid(openid);
         List<Post> order = OrderByTimeUtils.order(postByOpenid);
-        System.out.println("order:" + order);
+       // System.out.println("order:" + order);
         int b_index = (page - 1) * num;
         int e_index = page * num-1;
         List<Post> res_post = null;
@@ -69,7 +69,7 @@ public class PostService {
                 res_post = order.subList(b_index, order.size());
             }
         }
-        System.out.println("res_post:" + res_post);
+        //System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
         if (res_post!=null) {
@@ -102,7 +102,7 @@ public class PostService {
         page = 1;
         List<Post> postBySchool = postMapper.getPostBySchool(school);
         List<Post> order = OrderByTimeUtils.order(postBySchool);
-        System.out.println("order:" + order);
+        //System.out.println("order:" + order);
         int b_index = (page - 1) * num;
         int e_index = page * num-1;
         List<Post> res_post = null;
@@ -115,7 +115,7 @@ public class PostService {
                 res_post = order.subList(b_index, order.size());
             }
         }
-        System.out.println("res_post:" + res_post);
+        //System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
         if (res_post!=null) {
@@ -138,7 +138,7 @@ public class PostService {
             }
         }
         List<Post> order = OrderByTimeUtils.order(postBySchool);
-        System.out.println("order:" + order);
+        //System.out.println("order:" + order);
         int b_index = (page - 1) * num;
         int e_index = page * num-1;
         List<Post> res_post = null;
@@ -151,7 +151,7 @@ public class PostService {
                 res_post = order.subList(b_index, order.size());
             }
         }
-        System.out.println("res_post:" + res_post);
+        //System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
         if (res_post!=null) {
@@ -183,7 +183,7 @@ public class PostService {
         page = 1;
         List<Post> allPost = postMapper.getAllPost();
         List<Post> order = OrderByTimeUtils.order(allPost);
-        System.out.println("order:" + order);
+        //System.out.println("order:" + order);
         int b_index = (page - 1) * num;
         int e_index = page * num-1;
         List<Post> res_post = null;
@@ -196,7 +196,7 @@ public class PostService {
                 res_post = order.subList(b_index, order.size());
             }
         }
-        System.out.println("res_post:" + res_post);
+        //System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
         if (res_post!=null) {
@@ -219,7 +219,7 @@ public class PostService {
             }
         }
         List<Post> order = OrderByTimeUtils.order(allPost);
-        System.out.println("order:" + order);
+        //System.out.println("order:" + order);
         int b_index = (page - 1) * num;
         int e_index = page * num-1;
         List<Post> res_post = null;
@@ -232,7 +232,7 @@ public class PostService {
                 res_post = order.subList(b_index, order.size());
             }
         }
-        System.out.println("res_post:" + res_post);
+        //System.out.println("res_post:" + res_post);
         //处理完毕 开始挂载图片
         List<PostPlus> postPlusList = new ArrayList<>();
         if (res_post!=null) {
